@@ -39,7 +39,7 @@ const Upload = () => {
     setError('');
 
     try {
-      const res = await axios.post((import.meta.env.VITE_API_BASE_URL || 'http://localhost:5000') + '/api/document/upload', formData, {
+      const res = await axios.post('https://smartlearn-ai-backend-20cp.onrender.com/api/document/upload', formData, {
         headers: {
           'Content-Type': 'multipart/form-data',
           Authorization: `Bearer ${token}`,

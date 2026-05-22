@@ -21,7 +21,7 @@ const Flashcards = () => {
   const fetchCards = async () => {
     try {
       const token = JSON.parse(localStorage.getItem('user'))?.token;
-      const res = await axios.get(`${import.meta.env.VITE_API_BASE_URL || 'http://localhost:5000'}/api/flashcards/${docId}`, {
+      const res = await axios.get(`https://smartlearn-ai-backend-20cp.onrender.com/api/flashcards/${docId}`, {
         headers: { Authorization: `Bearer ${token}` }
       });
       setCards(res.data);
@@ -34,7 +34,7 @@ const Flashcards = () => {
     setLoading(true);
     try {
       const token = JSON.parse(localStorage.getItem('user'))?.token;
-      const res = await axios.post((import.meta.env.VITE_API_BASE_URL || 'http://localhost:5000') + '/api/flashcards/generate', 
+      const res = await axios.post('https://smartlearn-ai-backend-20cp.onrender.com/api/flashcards/generate', 
         { documentId: docId },
         { headers: { Authorization: `Bearer ${token}` } }
       );
@@ -64,7 +64,7 @@ const Flashcards = () => {
     try {
       const token = JSON.parse(localStorage.getItem('user'))?.token;
       const cardId = cards[currentIndex]._id;
-      await axios.put(`${import.meta.env.VITE_API_BASE_URL || 'http://localhost:5000'}/api/flashcards/update/${cardId}`, { difficulty }, {
+      await axios.put(`https://smartlearn-ai-backend-20cp.onrender.com/api/flashcards/update/${cardId}`, { difficulty }, {
         headers: { Authorization: `Bearer ${token}` }
       });
       // Optionally update local state
