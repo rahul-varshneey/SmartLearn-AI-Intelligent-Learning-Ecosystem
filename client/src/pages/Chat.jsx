@@ -29,7 +29,7 @@ const Chat = () => {
   const fetchDocDetails = async () => {
     try {
       const token = JSON.parse(localStorage.getItem('user'))?.token;
-      const res = await axios.get(`http://localhost:5000/api/document/${docId}`, {
+      const res = await axios.get(`${import.meta.env.VITE_API_BASE_URL || 'http://localhost:5000'}/api/document/${docId}`, {
         headers: { Authorization: `Bearer ${token}` }
       });
       setDocDetails(res.data);
@@ -49,7 +49,7 @@ const Chat = () => {
 
     try {
       const token = JSON.parse(localStorage.getItem('user'))?.token;
-      const res = await axios.post('http://localhost:5000/api/chat', 
+      const res = await axios.post((import.meta.env.VITE_API_BASE_URL || 'http://localhost:5000') + '/api/chat', 
         { documentId: docId, question: userMsg },
         { headers: { Authorization: `Bearer ${token}` } }
       );

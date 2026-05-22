@@ -40,7 +40,7 @@ const Mindmap = () => {
     setError('');
     try {
       const token = JSON.parse(localStorage.getItem('user'))?.token;
-      const res = await axios.post('http://localhost:5000/api/mindmap', 
+      const res = await axios.post((import.meta.env.VITE_API_BASE_URL || 'http://localhost:5000') + '/api/mindmap', 
         { documentId: docId },
         { headers: { Authorization: `Bearer ${token}` } }
       );

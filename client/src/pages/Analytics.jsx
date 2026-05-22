@@ -29,7 +29,7 @@ const Analytics = () => {
   const fetchAnalytics = async () => {
     try {
       const token = JSON.parse(localStorage.getItem('user'))?.token;
-      const res = await axios.get('http://localhost:5000/api/analytics', {
+      const res = await axios.get(`${import.meta.env.VITE_API_BASE_URL || 'http://localhost:5000'}/api/analytics`, {
         headers: { Authorization: `Bearer ${token}` }
       });
       setAnalytics(res.data);

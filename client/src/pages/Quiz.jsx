@@ -21,7 +21,7 @@ const Quiz = () => {
     setLoading(true);
     try {
       const token = JSON.parse(localStorage.getItem('user'))?.token;
-      const res = await axios.post('http://localhost:5000/api/quiz/generate', 
+      const res = await axios.post((import.meta.env.VITE_API_BASE_URL || 'http://localhost:5000') + '/api/quiz/generate', 
         { documentId: docId, numQuestions },
         { headers: { Authorization: `Bearer ${token}` } }
       );
@@ -65,7 +65,7 @@ const Quiz = () => {
       }
       setScore(finalScore);
       
-      await axios.post('http://localhost:5000/api/quiz/submit', 
+      await axios.post((import.meta.env.VITE_API_BASE_URL || 'http://localhost:5000') + '/api/quiz/submit', 
         { quizId: quiz._id, score: finalScore },
         { headers: { Authorization: `Bearer ${token}` } }
       );
